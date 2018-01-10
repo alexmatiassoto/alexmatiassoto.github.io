@@ -156,52 +156,91 @@
 		 * Contact form ajax
 		/* ---------------------------------------------- */
 
-		$("#contact-form").submit(function(e) {
+		(function () {
+		    emailjs.init("user_3YQO6kxtYac0MH8hgOHSS");
+		})();
 
-			e.preventDefault();
+		var myform = $("form#contact-form");
+		myform.submit(function (event) {
+		    event.preventDefault();
 
-			var c_name = $("#c_name").val();
-			var c_email = $("#c_email").val();
-			var c_message = $("#c_message ").val();
-			var responseMessage = $('.ajax-response');
+		    var c_name = $("#c_name").val();
+		    var c_email = $("#c_email").val();
+		    var c_message = $("#c_message ").val();
+		    var responseMessage = $('.ajax-response');
 
-			if (( c_name== "" || c_email == "" || c_message == "") || (!isValidEmailAddress(c_email) )) {
-				responseMessage.fadeIn(500);
-				responseMessage.html('<i class="fa fa-warning"></i> Check all fields.');
-			}
+		    if ((c_name == "" || c_email == "" || c_message == "") || (!isValidEmailAddress(c_email))) {
+		        responseMessage.fadeIn(500);
+		        responseMessage.html('<i class="fa fa-warning"></i> <b>Completar todos los campos.</b>');
+		    }
+		    else {
+		        var service_id = "default_service";
+		        var template_id = "email_template_google";
 
-			else {
-				$.ajax({
-					type: "POST",
-					url: "assets/php/contactForm.php",
-					dataType: 'json',
-					data: {
-						c_email: c_email,
-						c_name: c_name,
-						c_message: c_message
-					},
-					beforeSend: function(result) {
-						$('#contact-form button').empty();
-						$('#contact-form button').append('<i class="fa fa-cog fa-spin"></i> Wait...');
-					},
-					success: function(result) {
-						if(result.sendstatus == 1) {
-							responseMessage.html(result.message);
-							responseMessage.fadeIn(500);
-							$('#contact-form').fadeOut(500);
-						} else {
-							$('#contact-form button').empty();
-							$('#contact-form button').append('<i class="fa fa-retweet"></i> Try again.');
-							responseMessage.html(result.message);
-							responseMessage.fadeIn(1000);
-						}
-					}
-				});
-			}
+		        $('#contact-form button').empty();
+		        $('#contact-form button').append('<i class="fa fa-cog fa-spin"></i> Enviando...');
+		        emailjs.sendForm(service_id, template_id, "contact-form")
+                  .then(function () {
+                      $('#contact-form button').empty();
+                      $('#contact-form button').append('Enviado.');
+                      responseMessage.html('<i class="fa fa-check"></i> <b>Mensaje enviado exitosamente :D!</b>');
+                      responseMessage.fadeIn(500);
+                      $('#contact-form').fadeOut(500);
 
-			return false;
-
+                  }, function (err) {
+                      //alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+                      //myform.find("button").text("Send");
+                  });
+		        return false;
+		    }
 		});
+
+		//$("#contact-form").submit(function(e) {
+
+		//	e.preventDefault();
+
+		//	var c_name = $("#c_name").val();
+		//	var c_email = $("#c_email").val();
+		//	var c_message = $("#c_message ").val();
+		//	var responseMessage = $('.ajax-response');
+
+		//	if (( c_name== "" || c_email == "" || c_message == "") || (!isValidEmailAddress(c_email) )) {
+		//		responseMessage.fadeIn(500);
+		//		responseMessage.html('<i class="fa fa-warning"></i> Check all fields.');
+		//	}
+
+		//	else {
+		//		$.ajax({
+		//			type: "POST",
+		//			url: "assets/php/contactForm.php",
+		//			dataType: 'json',
+		//			data: {
+		//				c_email: c_email,
+		//				c_name: c_name,
+		//				c_message: c_message
+		//			},
+		//			beforeSend: function(result) {
+		//				$('#contact-form button').empty();
+		//				$('#contact-form button').append('<i class="fa fa-cog fa-spin"></i> Wait...');
+		//			},
+		//			success: function(result) {
+		//				if(result.sendstatus == 1) {
+		//					responseMessage.html(result.message);
+		//					responseMessage.fadeIn(500);
+		//					$('#contact-form').fadeOut(500);
+		//				} else {
+		//					$('#contact-form button').empty();
+		//					$('#contact-form button').append('<i class="fa fa-retweet"></i> Try again.');
+		//					responseMessage.html(result.message);
+		//					responseMessage.fadeIn(1000);
+		//				}
+		//			}
+		//		});
+		//	}
+
+		//	return false;
+
+		//});
 
 	});
 
