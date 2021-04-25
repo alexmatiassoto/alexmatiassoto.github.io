@@ -21,7 +21,7 @@ img {
 }
 
 a {
-	color: #428bca;
+	color: #003397;
 }
 
 a:hover {
@@ -136,7 +136,7 @@ a,
 	height: 54px;
 	font-size: 14px;
 	padding: 15px;
-	color: #428bca;
+	color: #003397;
     font-weight:bold;
 }
 
@@ -204,7 +204,7 @@ a,
 
 .btn-custom-1, .btn-custom-2 {
 	background: transparent;
-	border: 2px solid #428bca;
+	border: 2px solid #003397;
 	padding: 15px 25px;
 }
 
@@ -213,8 +213,8 @@ a,
 }
 
 .btn-custom-1:hover, .btn-custom-1:focus, .btn-custom-1:active, .btn-custom-1.active {
-	background: #428bca;
-	border: 2px solid #428bca;
+	background: #003397;
+	border: 2px solid #003397;
 	color: #FFF;
 }
 
@@ -449,7 +449,7 @@ h3 > .fa {
 .navbar-custom .nav li.active {
 	background: none;
 	outline: 0;
-	color: #428bca;
+	color: #003397;
     font-weight: bold;
 }
 
@@ -565,7 +565,7 @@ h3 > .fa {
 }
 
 .widget-social li a:hover {
-	background: #428bca;
+	background: #003397;
 }
 
 .stat .stat-icon {

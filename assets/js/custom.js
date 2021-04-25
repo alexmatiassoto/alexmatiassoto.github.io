@@ -157,7 +157,7 @@
 		/* ---------------------------------------------- */
 
 		(function () {
-		    emailjs.init("user_3YQO6kxtYac0MH8hgOHSS");
+		    emailjs.init("user_CDrOzdlTyFO0fcDbsDWDX");
 		})();
 
 		var myform = $("form#contact-form");
@@ -175,7 +175,7 @@
 		    }
 		    else {
 		        var service_id = "default_service";
-		        var template_id = "email_template_google";
+		        var template_id = "template_3luj0am";
 
 		        $('#contact-form button').empty();
 		        $('#contact-form button').append('<i class="fa fa-cog fa-spin"></i> Enviando...');
@@ -188,8 +188,8 @@
                       $('#contact-form').fadeOut(500);
 
                   }, function (err) {
-                      //alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
-                      //myform.find("button").text("Send");
+                      alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+                      myform.find("button").text("Send");
                   });
 		        return false;
 		    }
