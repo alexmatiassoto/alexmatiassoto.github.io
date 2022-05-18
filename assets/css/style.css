@@ -352,6 +352,13 @@ a,
 	color: #C4C4C4;
 }
 
+.headline h3 {
+	font-weight: 700 !important;
+	color: #C4C4C4;
+	text-transform: none;
+	font: 300 15px/1.6 'Raleway', serif, sans-serif;
+}
+
 .callout-btn {
 	margin-top: 10px;
 }
@@ -449,8 +456,8 @@ h3 > .fa {
 .navbar-custom .nav li.active {
 	background: none;
 	outline: 0;
-	color: #003397;
-    font-weight: bold;
+	/* color: #003397; */
+    font-weight: 900;
 }
 
 .navbar-custom .navbar-brand {
